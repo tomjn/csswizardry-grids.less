@@ -1,0 +1,200 @@
+/*------------------------------------*\
+    $CSSWIZARDRY-GRIDS
+\*------------------------------------*/
+/**
+ * CONTENTS
+ * VARIABLES............Your settings.
+ * GRID SETUP...........Build the grid structure.
+ * WIDTHS...............Build our responsive widths around our breakpoints.
+ */
+
+
+
+
+
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+/**
+ * Set the spacing between your grid items.
+ */
+@gutter:                 24px;
+
+
+/**
+ * At which point should lap and desk breakpoints kick in?
+ */
+@lap-start:              481px;
+@desk-start:             1024px;
+
+/*------------------------------------*\
+    $GRID SETUP
+\*------------------------------------*/
+/**
+ * 1. Allow the grid system to be used on lists.
+ * 2. Remove any margins and paddings that might affect the grid system.
+ * 3. Apply a negative `margin-left` to negate the columns’ gutters.
+ * 4. Remove whitespace caused by `inline-block` elements.
+ */
+.grid{
+    list-style:none;                /* [1] */
+    margin:0;                       /* [2] */
+    padding:0;                      /* [2] */
+    margin-left: 0px - @gutter;     /* [3] */
+    letter-spacing:-0.31em;         /* [4] */
+    word-spacing:-0.43em;           /* [4] */
+}
+
+
+/**
+ * 1. Cause columns to stack side-by-side.
+ * 2. Space columns apart.
+ * 3. Align columns to the tops of each other.
+ * 4. Reinstate removed whitespace.
+ * 5. Required to combine fluid widths and fixed gutters.
+ */
+.grid__item{
+    display:inline-block;           /* [1] */
+    padding-left:@gutter;           /* [2] */
+    vertical-align:top;             /* [3] */
+    letter-spacing:normal;          /* [4] */
+    word-spacing:normal;            /* [4] */
+    -webkit-box-sizing:border-box;  /* [5] */
+       -moz-box-sizing:border-box;  /* [5] */
+            box-sizing:border-box;  /* [5] */
+}
+
+
+
+
+
+/*------------------------------------*\
+    $WIDTHS
+\*------------------------------------*/
+/**
+ * These next bits get worked out for you.
+ */
+@palm-end:               @lap-start - 1px;
+@lap-end:               @desk-start - 1px;
+
+
+/**
+ * Create our widths, prefixed by the specified namespace.
+ */
+.device-type(@namespace:''){
+
+
+    /**
+     * Whole
+     */
+    .@{namespace}one-whole         { width:100%; }
+
+
+    /**
+     * Halves
+     */
+    .@{namespace}one-half          { width:50%; }
+
+
+    /**
+     * Thirds
+     */
+    .@{namespace}one-third         { width:33.333%; }
+    .@{namespace}two-thirds        { width:66.666%; }
+
+
+    /**
+     * Quarters
+     */
+    .@{namespace}one-quarter       { width:25%; }
+    .@{namespace}two-quarters      { .@{namespace}one-half; }
+    .@{namespace}three-quarters    { width:75%; }
+
+
+    /**
+     * Fifths
+     */
+    .@{namespace}one-fifth         { width:20%; }
+    .@{namespace}two-fifths        { width:40%; }
+    .@{namespace}three-fifths      { width:60%; }
+    .@{namespace}four-fifths       { width:80%; }
+
+
+    /**
+     * Sixths
+     */
+    .@{namespace}one-sixth         { width:16.666%; }
+    .@{namespace}two-sixths        { .@{namespace}one-third; }
+    .@{namespace}three-sixths      { .@{namespace}one-half; }
+    .@{namespace}four-sixths       { .@{namespace}two-thirds; }
+    .@{namespace}five-sixths       { width:83.333%; }
+
+
+    /**
+     * Eighths
+     */
+    .@{namespace}one-eighth        { width:12.5%; }
+    .@{namespace}two-eighths       { .@{namespace}one-quarter; }
+    .@{namespace}three-eighths     { width:37.5%; }
+    .@{namespace}four-eighths      { .@{namespace}one-half; }
+    .@{namespace}five-eighths      { width:62.5%; }
+    .@{namespace}six-eighths       { .@{namespace}three-quarters; }
+    .@{namespace}seven-eighths     { width:87.5%; }
+
+
+    /**
+     * Tenths
+     */
+    .@{namespace}one-tenth         { width:10%; }
+    .@{namespace}two-tenths        { .@{namespace}one-fifth; }
+    .@{namespace}three-tenths      { width:30%; }
+    .@{namespace}four-tenths       { .@{namespace}two-fifths; }
+    .@{namespace}five-tenths       { .@{namespace}one-half; }
+    .@{namespace}six-tenths        { .@{namespace}three-fifths; }
+    .@{namespace}seven-tenths      { width:70%; }
+    .@{namespace}eight-tenths      { .@{namespace}four-fifths; }
+    .@{namespace}nine-tenths       { width:90%; }
+
+
+    /**
+     * Twelfths
+     */
+    .@{namespace}one-twelfth       { width:8.333%; }
+    .@{namespace}two-twelfths      { .@{namespace}one-sixth; }
+    .@{namespace}three-twelfths    { .@{namespace}one-quarter; }
+    .@{namespace}four-twelfths     { .@{namespace}one-third; }
+    .@{namespace}five-twelfths     { width:41.666% }
+    .@{namespace}six-twelfths      { .@{namespace}one-half; }
+    .@{namespace}seven-twelfths    { width:58.333%; }
+    .@{namespace}eight-twelfths    { .@{namespace}two-thirds; }
+    .@{namespace}nine-twelfths     { .@{namespace}three-quarters; }
+    .@{namespace}ten-twelfths      { .@{namespace}five-sixths; }
+    .@{namespace}eleven-twelfths   { width:91.666%; }
+
+
+}
+
+
+/**
+ * Our regular, non-responsive width classes.
+ */
+.device-type();
+
+/**
+ * Our breakpoint specific widths classes.
+ */
+@media only screen and (max-width:@palm-end){
+    .device-type(~"palm-");
+}
+
+@media only screen and (min-width:@lap-start) and (max-width:@lap-end){
+    .device-type(~"lap-");
+}
+
+@media only screen and (max-width:@lap-end){
+    .device-type(~"portable-");
+}
+
+@media only screen and (min-width:@desk-start){
+    .device-type(~"desk-");
+}
